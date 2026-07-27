@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useCallback } from 'react';
+import { useLayoutEffect, useRef, useCallback, useMemo } from 'react';
 import AnimatedHeadline from './AnimatedHeadline';
 import PillNav from './PillNav';
 
@@ -18,7 +18,6 @@ function App() {
   const ph1Ref = useRef(null);
   const heroRef = useRef(null);
   const s2ContentRef = useRef(null);
-  const s3ContentRef = useRef(null);
   const ticking = useRef(false);
   const resizeTick = useRef(false);
   const layoutRef = useRef({ vw: 0, vh: 0, s: 0, pw: 0, max: 1 });
@@ -54,21 +53,14 @@ function App() {
 
     wrap.style.transform = `translate3d(${kf1x + (kf2x - kf1x) * p}px, ${kf1y + (kf2y - kf1y) * p}px, 0) scale(${1 - p * 0.12})`;
 
-    const heroT = smoothstep(clamp(p / 0.25, 0, 1));
+    const heroT = smoothstep(clamp(p / 0.35, 0, 1));
     phone.style.opacity = 1 - heroT;
     ph1.style.opacity = heroT;
     if (hero) hero.style.opacity = 1 - heroT;
 
     const s2c = s2ContentRef.current;
     if (s2c) {
-      const s2In = smoothstep(clamp((p - 0.15) / 0.25, 0, 1));
-      const s2Out = smoothstep(clamp((p - 0.50) / 0.20, 0, 1));
-      s2c.style.opacity = s2In * (1 - s2Out);
-    }
-
-    const s3c = s3ContentRef.current;
-    if (s3c) {
-      s3c.style.opacity = smoothstep(clamp((p - 0.50) / 0.25, 0, 1));
+      s2c.style.opacity = smoothstep(clamp((p - 0.8) / 0.2, 0, 1));
     }
 
     ticking.current = false;
@@ -132,12 +124,6 @@ function App() {
         <div className="s2-content" ref={s2ContentRef}>
           <img src="/assets/sec2.png" alt="" className="s2-image" />
           <p className="s2-subtext">Every conversation becomes part of something bigger. Ray transforms your thoughts into a living knowledge base that grows with you, making every idea easy to find, connect, and build upon.</p>
-        </div>
-      </div>
-
-      <div className="section-3">
-        <div className="s3-content" ref={s3ContentRef}>
-          <p className="s3-subtext">Your knowledge grows with every interaction. Ray helps you capture, organize, and retrieve information exactly when you need it.</p>
         </div>
       </div>
 
