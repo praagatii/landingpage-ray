@@ -127,6 +127,8 @@ function App() {
         </div>
       </div>
 
+      <div className="section-3" />
+
       <div id="phoneWrap" ref={wrapRef}>
         <img src="/assets/ph.png" alt="" id="phone" ref={phoneRef} />
         <img src="/assets/ph3.png" alt="" id="ph1" ref={ph1Ref} />
