@@ -61,12 +61,14 @@ function App() {
 
     const s2c = s2ContentRef.current;
     if (s2c) {
-      s2c.style.opacity = smoothstep(clamp((p - 0.25) / 0.25, 0, 1));
+      const s2In = smoothstep(clamp((p - 0.15) / 0.25, 0, 1));
+      const s2Out = smoothstep(clamp((p - 0.50) / 0.20, 0, 1));
+      s2c.style.opacity = s2In * (1 - s2Out);
     }
 
     const s3c = s3ContentRef.current;
     if (s3c) {
-      s3c.style.opacity = smoothstep(clamp((p - 0.55) / 0.25, 0, 1));
+      s3c.style.opacity = smoothstep(clamp((p - 0.50) / 0.25, 0, 1));
     }
 
     ticking.current = false;
