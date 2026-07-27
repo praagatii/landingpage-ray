@@ -1,7 +1,16 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useLayoutEffect, useRef, useCallback, useMemo } from 'react';
 import AnimatedHeadline from './AnimatedHeadline';
 import PillNav from './PillNav';
 
+const smoothstep = t => t * t * (3 - 2 * t);
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+const navItems = [
+  { label: 'Home', href: '#' },
+  { label: 'Working', href: '#' },
+  { label: 'About', href: '#' },
+  { label: 'Contact', href: '#' }
+];
 
 function App() {
   const wrapRef = useRef(null);
@@ -10,7 +19,8 @@ function App() {
   const heroRef = useRef(null);
   const s2ContentRef = useRef(null);
   const ticking = useRef(false);
-  const layoutRef = useRef({ vw: 0, vh: 0, s: 0, pw: 0, max: 0 });
+  const resizeTick = useRef(false);
+  const layoutRef = useRef({ vw: 0, vh: 0, s: 0, pw: 0, max: 1 });
 
   const updateLayout = useCallback(() => {
     const phone = phoneRef.current;
@@ -22,7 +32,7 @@ function App() {
       vh,
       s: Math.min(vw, vh),
       pw: phone.offsetWidth,
-      max: document.body.scrollHeight - vh
+      max: Math.max(1, document.body.scrollHeight - vh)
     };
   }, []);
 
@@ -34,7 +44,7 @@ function App() {
     if (!wrap || !phone || !ph1) return;
 
     const { vw, vh, s, pw, max } = layoutRef.current;
-    const p = Math.min(1, Math.max(0, window.scrollY / max));
+    const p = clamp(window.scrollY / max, 0, 1);
 
     const kf1x = vw - pw - vw * 0.03;
     const kf1y = vh * 0.11;
@@ -43,16 +53,14 @@ function App() {
 
     wrap.style.transform = `translate3d(${kf1x + (kf2x - kf1x) * p}px, ${kf1y + (kf2y - kf1y) * p}px, 0) scale(${1 - p * 0.12})`;
 
-    const r = Math.min(1, Math.max(0, p / 0.35));
-    const heroT = r * r * (3 - 2 * r);
+    const heroT = smoothstep(clamp(p / 0.35, 0, 1));
     phone.style.opacity = 1 - heroT;
     ph1.style.opacity = heroT;
     if (hero) hero.style.opacity = 1 - heroT;
 
     const s2c = s2ContentRef.current;
     if (s2c) {
-      const r = Math.min(1, Math.max(0, (p - 0.8) / 0.2));
-      s2c.style.opacity = r * r * (3 - 2 * r);
+      s2c.style.opacity = smoothstep(clamp((p - 0.8) / 0.2, 0, 1));
     }
 
     ticking.current = false;
@@ -65,17 +73,35 @@ function App() {
     }
   }, [update]);
 
-  useEffect(() => {
+  const handleResize = useCallback(() => {
+    if (!resizeTick.current) {
+      requestAnimationFrame(() => {
+        updateLayout();
+        update();
+        resizeTick.current = false;
+      });
+      resizeTick.current = true;
+    }
+  }, [update, updateLayout]);
+
+  useLayoutEffect(() => {
     updateLayout();
-    const onResize = () => { updateLayout(); update(); };
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', onResize);
+    window.addEventListener('resize', handleResize);
     update();
+
+    const onLoad = () => {
+      updateLayout();
+      update();
+    };
+    window.addEventListener('load', onLoad);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('load', onLoad);
     };
-  }, [handleScroll, update, updateLayout]);
+  }, [handleScroll, handleResize, update, updateLayout]);
 
   return (
     <>
@@ -86,12 +112,7 @@ function App() {
         pillColor="rgba(18, 15, 23, 0.65)"
         hoveredPillTextColor="#fff"
         pillTextColor="rgba(255, 255, 255, 0.75)"
-        items={[
-          { label: 'Home', href: '#' },
-          { label: 'Working', href: '#' },
-          { label: 'About', href: '#' },
-          { label: 'Contact', href: '#' }
-        ]}
+        items={navItems}
       />
 
       <div className="section-1">

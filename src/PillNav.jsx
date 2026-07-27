@@ -86,6 +86,18 @@ const PillNav = ({
 
     updateCircleGeo();
     if (!initializedRef.current) {
+      if (initialLoadAnimation) {
+        const logoEl = logoRef.current;
+        const navEl = navItemsRef.current;
+        if (logoEl) {
+          gsap.set(logoEl, { scale: 0 });
+          gsap.to(logoEl, { scale: 1, duration: 0.6, ease });
+        }
+        if (navEl) {
+          gsap.set(navEl, { width: 0, overflow: 'hidden' });
+          gsap.to(navEl, { width: 'auto', duration: 0.6, ease });
+        }
+      }
       createTimelines();
       initializedRef.current = true;
     }
@@ -102,30 +114,14 @@ const PillNav = ({
       gsap.set(menu, { visibility: 'hidden', opacity: 0, scaleY: 1 });
     }
 
-    if (initialLoadAnimation && !initializedRef.current) {
-      const logoEl = logoRef.current;
-      const navItems = navItemsRef.current;
-
-      if (logoEl) {
-        gsap.set(logoEl, { scale: 0 });
-        gsap.to(logoEl, {
-          scale: 1,
-          duration: 0.6,
-          ease
-        });
-      }
-
-      if (navItems) {
-        gsap.set(navItems, { width: 0, overflow: 'hidden' });
-        gsap.to(navItems, {
-          width: 'auto',
-          duration: 0.6,
-          ease
-        });
-      }
-    }
-
-    return () => window.removeEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      tlRefs.current.forEach(tl => tl?.kill());
+      activeTweenRefs.current.forEach(t => t?.kill());
+      logoTweenRef.current?.kill();
+      tlRefs.current = [];
+      activeTweenRefs.current = [];
+    };
   }, [items, ease, initialLoadAnimation]);
 
   const handleEnter = i => {
@@ -163,8 +159,10 @@ const PillNav = ({
     });
   };
 
+  const mobileOpenRef = useRef(false);
   const toggleMobileMenu = () => {
-    const newState = !isMobileMenuOpen;
+    const newState = !mobileOpenRef.current;
+    mobileOpenRef.current = newState;
     setIsMobileMenuOpen(newState);
 
     const hamburger = hamburgerRef.current;
@@ -253,7 +251,7 @@ const PillNav = ({
           </ul>
         </div>
 
-        <button className="mobile-menu-button mobile-only" onClick={toggleMobileMenu} aria-label="Toggle menu" ref={hamburgerRef}>
+        <button type="button" className="mobile-menu-button mobile-only" onClick={toggleMobileMenu} aria-label="Toggle menu" ref={hamburgerRef}>
           <span className="hamburger-line" />
           <span className="hamburger-line" />
         </button>

@@ -22,7 +22,7 @@ export default function AnimatedHeadline() {
   }, []);
 
   return (
-    <motion.h1 className="hero-headline" layout="position" transition={spring}>
+    <motion.h1 className="hero-headline" aria-live="polite" layout="position" transition={spring}>
       <motion.span layout="position" transition={spring}>Your ideas, </motion.span>
       <span className="word-wrapper" style={{ display: 'inline-block', perspective: '600px' }}>
         <AnimatePresence mode="popLayout">
