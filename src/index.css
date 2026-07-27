@@ -29,7 +29,7 @@ body.s2-active .s2-subtext { opacity: 0.85; color: #000; }
 .bg-hero { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 3; pointer-events: none; }
 
 .hero-headline {
-  position: absolute; left: 6.7%; top: calc(var(--vh, 1vh) * 57); z-index: 5;
+  position: absolute; left: 6.7%; top: calc(var(--vh, 1vh) * 59); z-index: 5;
   font-family: 'MuseoModerno', system-ui, sans-serif;
   font-weight: 400; font-size: clamp(1rem, 2.5vw, 2rem);
   color: #fff; letter-spacing: -0.01em; line-height: 1.2;
@@ -37,8 +37,12 @@ body.s2-active .s2-subtext { opacity: 0.85; color: #000; }
 }
 .dynamic-word { font-weight: 400; color: #fff; display: inline-block; }
 
+.hero-btns {
+  position: absolute; left: 6.7%; top: calc(var(--vh, 1vh) * 62 + 6rem); z-index: 5;
+  display: flex;
+  gap: 1.5rem;
+}
 .hero-btn {
-  position: absolute; left: 6.7%; top: calc(var(--vh, 1vh) * 57 + 5rem); z-index: 5;
   font-family: 'MuseoModerno', system-ui, sans-serif;
   font-weight: 500; font-size: clamp(0.8rem, 1.2vw, 1rem);
   color: #fff; background: transparent;
@@ -48,11 +52,14 @@ body.s2-active .s2-subtext { opacity: 0.85; color: #000; }
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase; letter-spacing: 0.5px;
+  text-decoration: none;
+  display: inline-block;
 }
 .hero-btn:hover {
   background: rgba(255,255,255,0.1);
   border-color: rgba(255,255,255,0.6);
 }
+
 
 .s3-heading {
   flex-shrink: 0;

@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef, useCallback } from 'react';
-import AnimatedHeadline from './AnimatedHeadline';
-import PillNav from './PillNav';
-import { BottomBlur } from './EdgeBlur';
-import InfiniteMarquee from './InfiniteMarquee';
+import AnimatedHeadline from './components/AnimatedHeadline';
+import PillNav from './components/PillNav';
+import { BottomBlur } from './components/EdgeBlur';
+import InfiniteMarquee from './components/InfiniteMarquee';
 
 import {
   SiWhatsapp, SiGmail, SiGooglecalendar, SiNotion, SiDiscord, SiSpotify,
@@ -50,10 +50,10 @@ const bottomRow = [
 ];
 
 const navItems = [
-  { label: 'Home', href: '#' },
-  { label: 'Working', href: '#' },
-  { label: 'About', href: '#' },
-  { label: 'Contact', href: '#' }
+  { label: 'Home', href: '#home' },
+  { label: 'Working', href: '#s2' },
+  { label: 'About', href: '#s3' },
+  { label: 'Contact', href: '#s3' }
 ];
 
 function App() {
@@ -152,13 +152,16 @@ function App() {
         items={navItems}
       />
 
-      <div className="section-1">
+      <div className="section-1" id="home">
         <img src="/assets/hero1.png" alt="" className="bg-hero" ref={heroRef} />
         <AnimatedHeadline />
-        <button className="hero-btn">Learn More</button>
+        <div className="hero-btns">
+          <a href="#s3" className="hero-btn">Learn More</a>
+          <button className="hero-btn">Contact Us</button>
+        </div>
       </div>
 
-      <div className="section-2">
+      <div className="section-2" id="s2">
         <div id="phoneWrap" ref={wrapRef}>
           <img src="/assets/ph.png" alt="" id="phone" ref={phoneRef} />
           <img src="/assets/ph6.png" alt="" id="ph1" ref={ph1Ref} />
@@ -169,7 +172,7 @@ function App() {
         </div>
       </div>
 
-      <div className="section-3">
+      <div className="section-3" id="s3">
         <div className="s3-inner">
           <div className="s3-top-row">
             <h2 className="s3-heading">Connected<br />by Ray</h2>
