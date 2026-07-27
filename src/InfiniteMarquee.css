@@ -1,0 +1,24 @@
+.infinite-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.infinite-marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.infinite-marquee__track--paused {
+  animation-play-state: paused !important;
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
