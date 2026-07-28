@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useCallback } from 'react';
+import Lenis from 'lenis'
 import AnimatedHeadline from './components/AnimatedHeadline';
 import PillNav from './components/PillNav';
 import { BottomBlur } from './components/EdgeBlur';
@@ -126,8 +127,16 @@ function App() {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 
     updateLayout();
-    window.addEventListener('scroll', handleScroll, { passive: true });
     update();
+
+    const lenis = new Lenis({ lerp: 0.08, wheelMultiplier: 1 })
+    lenis.on('scroll', handleScroll)
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+    requestAnimationFrame(raf)
 
     const onLoad = () => {
       updateLayout();
@@ -146,7 +155,7 @@ function App() {
     document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-in').forEach(el => observer.observe(el));
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      lenis.destroy()
       window.removeEventListener('load', onLoad);
       observer.disconnect();
     };
