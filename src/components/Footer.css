@@ -1,0 +1,236 @@
+.rf {
+  position: relative;
+  background: #050505;
+  font-family: 'MuseoModerno', system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.rf-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 35% at 50% 15%, rgba(255, 50, 100, 0.15), transparent 60%),
+    radial-gradient(ellipse 45% 25% at 25% 45%, rgba(45, 140, 255, 0.12), transparent 50%),
+    radial-gradient(ellipse 35% 40% at 75% 55%, rgba(255, 30, 80, 0.08), transparent 50%);
+}
+
+.rf-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 6.7% 50px;
+}
+
+.rf-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
+  gap: 40px;
+}
+
+.rf-col {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.rf-brand {
+  gap: 16px;
+}
+
+.rf-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.rf-brand-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.rf-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+  max-width: 280px;
+}
+
+.rf-col-heading {
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.rf-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rf-link {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.rf-link:hover {
+  color: #fff;
+}
+
+.rf-newsletter {
+  gap: 12px;
+}
+
+.rf-newsletter .rf-col-heading {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.rf-newsletter-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+}
+
+.rf-form {
+  width: 100%;
+}
+
+.rf-input-wrap {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.rf-input-wrap:focus-within {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.rf-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'MuseoModerno', system-ui, sans-serif;
+  font-size: 13px;
+  color: #fff;
+  padding: 10px 16px;
+}
+
+.rf-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.rf-submit {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #ff2d55, #2d8cff);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rf-submit svg {
+  width: 16px;
+  height: 16px;
+}
+
+.rf-submit:hover {
+  opacity: 0.85;
+}
+
+.rf-spam {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+}
+
+.rf-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+.rf-bottom-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 6.7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 1100px) {
+  .rf-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .rf-brand {
+    grid-column: 1 / -1;
+  }
+  .rf-newsletter {
+    grid-column: 1 / -1;
+  }
+  .rf-inner {
+    padding: 60px 6.7% 40px;
+  }
+  .rf-desc {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .rf-inner {
+    padding: 40px 6.7% 30px;
+  }
+  .rf-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .rf-brand-name {
+    font-size: 18px;
+  }
+  .rf-col-heading {
+    margin-bottom: 12px;
+  }
+  .rf-links {
+    gap: 8px;
+  }
+  .rf-newsletter .rf-col-heading {
+    font-size: 18px;
+  }
+  .rf-bottom-inner {
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 6.7%;
+    text-align: center;
+  }
+}

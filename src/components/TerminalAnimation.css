@@ -1,0 +1,122 @@
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-window {
+  width: 100%;
+  height: 440px;
+  border-radius: 28px;
+  background: #090909;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 40px rgba(255, 92, 138, 0.06),
+    0 0 80px rgba(45, 140, 255, 0.04),
+    0 0 120px rgba(45, 140, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal-dot--red { background: #ff5f56; }
+.terminal-dot--yellow { background: #ffbd2e; }
+.terminal-dot--green { background: #27c93f; }
+
+.terminal-status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'MuseoModerno', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.terminal-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #27c93f;
+  box-shadow: 0 0 6px rgba(39, 201, 63, 0.6);
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+.terminal-body {
+  flex: 1;
+  padding: 20px 24px;
+  overflow-y: hidden;
+  font-family: 'MuseoModerno', system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.terminal-line {
+  white-space: pre-wrap;
+  word-break: break-all;
+  min-height: 1.7em;
+}
+
+.terminal-line--header {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.02em;
+}
+
+.terminal-line--status {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+}
+
+.terminal-line--divider {
+  color: rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+}
+
+.terminal-line--waiting {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.terminal-line--success {
+  color: rgba(39, 201, 63, 0.9);
+}
+
+.terminal-line--quote {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+.terminal-line--label {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.terminal-line--value {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 0.8s step-end infinite;
+}

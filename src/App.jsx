@@ -3,7 +3,9 @@ import AnimatedHeadline from './components/AnimatedHeadline';
 import PillNav from './components/PillNav';
 import { BottomBlur } from './components/EdgeBlur';
 import InfiniteMarquee from './components/InfiniteMarquee';
-
+import CtaBanner from './components/CtaBanner';
+import UnderTheHood from './components/UnderTheHood';
+import Footer from './components/Footer';
 import {
   SiWhatsapp, SiGmail, SiGooglecalendar, SiNotion, SiDiscord, SiSpotify,
   SiYoutube, SiGooglemaps, SiUber, SiSwiggy, SiZomato, SiGoogledrive,
@@ -51,16 +53,15 @@ const bottomRow = [
 
 const navItems = [
   { label: 'Home', href: '#home' },
-  { label: 'Working', href: '#s2' },
-  { label: 'About', href: '#s3' },
-  { label: 'Contact', href: '#s3' }
+  { label: 'About', href: '#s2' },
+  { label: 'Working', href: '#s4' },
+  { label: 'Contact', href: '#footer' }
 ];
 
 function App() {
   const wrapRef = useRef(null);
   const phoneRef = useRef(null);
   const ph1Ref = useRef(null);
-  const heroRef = useRef(null);
 
   const ticking = useRef(false);
   const layoutRef = useRef({ vw: 0, vh: 0, s: 0, pw: 0, max: 1 });
@@ -83,14 +84,14 @@ function App() {
     const wrap = wrapRef.current;
     const phone = phoneRef.current;
     const ph1 = ph1Ref.current;
-    const hero = heroRef.current;
 
     if (!wrap || !phone || !ph1) return;
 
     const { vw, vh, s, pw, max } = layoutRef.current;
-    const p = clamp(window.scrollY / max, 0, 1);
+    const scrollY = window.scrollY;
+    const p = clamp(scrollY / max, 0, 1);
 
-    const phoneP = clamp(p / 0.5, 0, 1);
+    const phoneP = clamp(scrollY / (1 * vh), 0, 1);
 
     const kf1x = vw - pw - vw * 0.03;
     const kf1y = vh * 0.11;
@@ -102,13 +103,13 @@ function App() {
 
     wrap.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${1 - phoneP * 0.18})`;
 
-    const heroT = smoothstep(clamp(p / 0.35, 0, 1));
-    if (hero) hero.style.opacity = 1 - heroT;
+    const heroT = smoothstep(clamp(scrollY / (0.7 * vh), 0, 1));
 
     phone.style.opacity = 1 - heroT;
     ph1.style.opacity = heroT;
 
-    document.body.classList.toggle('s2-active', p >= 0.45);
+    document.body.classList.toggle('s2-active', scrollY >= 0.95 * vh);
+    document.body.classList.toggle('s3-out', scrollY >= 2.85 * vh);
 
     ticking.current = false;
   }, []);
@@ -153,38 +154,46 @@ function App() {
       />
 
       <div className="section-1" id="home">
-        <img src="/assets/hero1.png" alt="" className="bg-hero" ref={heroRef} />
         <AnimatedHeadline />
         <div className="hero-btns">
           <a href="#s3" className="hero-btn">Learn More</a>
           <button className="hero-btn">Contact Us</button>
         </div>
+        <div className="hero-tagline">never lose<br />a <span className="hero-thought">thought</span></div>
       </div>
 
       <div className="section-2" id="s2">
         <div id="phoneWrap" ref={wrapRef}>
+          <div className="phone-glow" />
           <img src="/assets/ph.png" alt="" id="phone" ref={phoneRef} />
           <img src="/assets/ph6.png" alt="" id="ph1" ref={ph1Ref} />
         </div>
         <div className="s2-content">
-          <img src="/assets/sec2.png" alt="" className="s2-image" />
+          <div className="s2-headline">a second<br />brain</div>
           <p className="s2-subtext">Every conversation becomes part of something bigger. Ray transforms your thoughts into a living knowledge base that grows with you, making every idea easy to find, connect, and build upon.</p>
         </div>
       </div>
 
       <div className="section-3" id="s3">
         <div className="s3-inner">
-          <div className="s3-top-row">
-            <h2 className="s3-heading">Connected<br />by Ray</h2>
-            <div className="s3-marquee s3-marquee--top">
-              <InfiniteMarquee className="ll2" logos={bottomRow} direction="right" speed={40} gap={72} logoSize={48} pauseOnHover />
-            </div>
+          <div className="s3-cta-wrap">
+            <CtaBanner />
           </div>
-          <div className="s3-marquee s3-marquee--bottom">
-            <InfiniteMarquee className="ll1" logos={topRow} direction="left" speed={60} gap={72} logoSize={48} pauseOnHover />
+          <div className="s3-heading-wrap">
+            <div className="s3-top-row">
+              <h2 className="s3-heading">Connected<br />by <span className="s3-ray-gradient">Ray</span></h2>
+              <div className="s3-marquee s3-marquee--top">
+                <InfiniteMarquee className="ll2" logos={bottomRow} direction="right" speed={40} gap={72} logoSize={48} pauseOnHover />
+              </div>
+            </div>
+            <div className="s3-marquee s3-marquee--bottom">
+              <InfiniteMarquee className="ll1" logos={topRow} direction="left" speed={60} gap={72} logoSize={48} pauseOnHover />
+            </div>
           </div>
         </div>
       </div>
+      <UnderTheHood />
+      <Footer />
       <BottomBlur height={60} />
     </>
   );
