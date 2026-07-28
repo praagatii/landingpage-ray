@@ -34,7 +34,7 @@
 
 .terminal-dot--red { background: #ff5f56; }
 .terminal-dot--yellow { background: #ffbd2e; }
-.terminal-dot--green { background: #27c93f; }
+.terminal-dot--green { background: #ff2d55; }
 
 .terminal-status {
   margin-left: auto;
@@ -53,8 +53,8 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #27c93f;
-  box-shadow: 0 0 6px rgba(39, 201, 63, 0.6);
+  background: #ff2d55;
+  box-shadow: 0 0 6px rgba(255, 45, 85, 0.6);
   animation: blink 1.5s ease-in-out infinite;
 }
 
@@ -95,7 +95,7 @@
 }
 
 .terminal-line--success {
-  color: rgba(39, 201, 63, 0.9);
+  color: rgba(255, 45, 85, 0.9);
 }
 
 .terminal-line--quote {

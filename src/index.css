@@ -11,6 +11,8 @@
 .loader-logo { height: 48px; width: auto; }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+::-webkit-scrollbar { display: none; }
+html { scrollbar-width: none; -ms-overflow-style: none; }
 
 .edge-blur { position: fixed; inset-inline: 0; z-index: 40; pointer-events: none; isolation: isolate; }
 .edge-blur-top { top: 0; }
