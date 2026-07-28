@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useCallback } from 'react';
+import { useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import AnimatedHeadline from './components/AnimatedHeadline';
 import PillNav from './components/PillNav';
 import { BottomBlur } from './components/EdgeBlur';
@@ -135,9 +135,20 @@ function App() {
     };
     window.addEventListener('load', onLoad);
 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('revealed');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-in').forEach(el => observer.observe(el));
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('load', onLoad);
+      observer.disconnect();
     };
   }, [handleScroll, update, updateLayout]);
 
@@ -165,10 +176,11 @@ function App() {
       <div className="section-2" id="s2">
         <div id="phoneWrap" ref={wrapRef}>
           <div className="phone-glow" />
-          <img src="/assets/ph.png" alt="" id="phone" ref={phoneRef} />
+          <img src="/assets/ph8.png" alt="" id="phone" ref={phoneRef} />
           <img src="/assets/ph6.png" alt="" id="ph1" ref={ph1Ref} />
         </div>
         <div className="s2-content">
+          <div className="s2-glow" />
           <div className="s2-headline">a second<br />brain</div>
           <p className="s2-subtext">Every conversation becomes part of something bigger. Ray transforms your thoughts into a living knowledge base that grows with you, making every idea easy to find, connect, and build upon.</p>
         </div>
@@ -176,17 +188,18 @@ function App() {
 
       <div className="section-3" id="s3">
         <div className="s3-inner">
-          <div className="s3-cta-wrap">
+          <div className="s3-cta-wrap reveal-up">
+            <div className="s3-cta-glow" />
             <CtaBanner />
           </div>
           <div className="s3-heading-wrap">
             <div className="s3-top-row">
-              <h2 className="s3-heading">Connected<br />by <span className="s3-ray-gradient">Ray</span></h2>
-              <div className="s3-marquee s3-marquee--top">
+              <h2 className="s3-heading reveal-up">Connected<br />by <span className="s3-ray-gradient">Ray</span></h2>
+              <div className="s3-marquee s3-marquee--top reveal-up">
                 <InfiniteMarquee className="ll2" logos={bottomRow} direction="right" speed={40} gap={72} logoSize={48} pauseOnHover />
               </div>
             </div>
-            <div className="s3-marquee s3-marquee--bottom">
+            <div className="s3-marquee s3-marquee--bottom reveal-up">
               <InfiniteMarquee className="ll1" logos={topRow} direction="left" speed={60} gap={72} logoSize={48} pauseOnHover />
             </div>
           </div>

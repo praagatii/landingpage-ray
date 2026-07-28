@@ -41,20 +41,37 @@ export default function UnderTheHood() {
       total = section.offsetHeight - window.innerHeight;
     };
     sync();
-    window.addEventListener('resize', sync);
 
     const ctx = canvas.getContext('2d', { alpha: false });
     let ctxReady = false;
 
+    const fitCanvas = () => {
+      if (!video.videoWidth) return;
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.round(rect.width);
+      const h = Math.round(rect.height);
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+      ctxReady = true;
+    };
+
     const draw = () => {
       if (!video.videoWidth) return;
-      if (!ctxReady) {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        ctxReady = true;
-      }
+      if (!ctxReady) fitCanvas();
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     };
+
+    const onResize = () => {
+      sync();
+      ctxReady = false;
+      fitCanvas();
+      if (video.readyState >= 2 && video.duration) {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      }
+    };
+    window.addEventListener('resize', onResize);
 
     const seekDraw = (t) => {
       video.removeEventListener('seeked', draw);
@@ -98,7 +115,7 @@ export default function UnderTheHood() {
     rafRef.current = requestAnimationFrame(loop);
     return () => {
       cancelAnimationFrame(rafRef.current);
-      window.removeEventListener('resize', sync);
+      window.removeEventListener('resize', onResize);
     };
   }, []);
 
