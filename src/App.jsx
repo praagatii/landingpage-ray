@@ -129,7 +129,12 @@ function App() {
     updateLayout();
     update();
 
-    const lenis = new Lenis({ lerp: 0.08, wheelMultiplier: 1 })
+    const isMobile = window.innerWidth < 768
+    const lenis = new Lenis({
+      lerp: isMobile ? 0.15 : 0.08,
+      wheelMultiplier: isMobile ? 0.8 : 1,
+      smoothWheel: !isMobile
+    })
     lenis.on('scroll', handleScroll)
 
     function raf(time) {
