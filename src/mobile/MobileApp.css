@@ -125,3 +125,36 @@ body { overflow-x: hidden; max-width: 100vw; background: #000; }
 .revealed.reveal-up { opacity: 1; transform: none; }
 .revealed.reveal-in { opacity: 1; }
 .revealed.reveal-scale { opacity: 1; transform: scale(1); }
+
+/* === CTA Banner mobile — extend vertically, single column === */
+.cta-banner { padding: 40px 24px; border-radius: 24px; }
+.cta-banner__inner { grid-template-columns: 1fr; gap: 24px; }
+.cta-banner__left { text-align: center; align-items: center; gap: 12px; }
+.cta-banner__headline { font-size: 24px; }
+.cta-banner__description { font-size: 14px; }
+.cta-banner__right { align-items: center; text-align: center; }
+.cta-banner__eyebrow { display: none; }
+.cta-banner__button { width: 100%; justify-content: center; padding: 14px 24px; font-size: 14px; }
+.cta-banner__trust { gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+/* === Under the Hood mobile — stacked heading → terminal → video === */
+.uth-content { position: relative !important; height: auto !important; padding: 40px 24px !important; display: flex; flex-direction: column; align-items: center; }
+.uth-container { display: flex !important; flex-direction: column; gap: 24px; width: 100%; }
+.uth-left { opacity: 1 !important; transform: none !important; text-align: center; padding-top: 0; align-self: auto !important; }
+.uth-label { font-size: 18px; }
+.uth-heading { font-size: 48px; line-height: 0.7; }
+.uth-right { opacity: 1 !important; transform: none !important; width: 100%; margin-left: 0; overflow: visible; }
+.uth-right-inner { position: relative !important; height: auto !important; padding-top: 0 !important; display: flex; flex-direction: column; gap: 24px; }
+.uth-video-card { position: relative !important; top: auto !important; left: auto !important; width: 100% !important; height: 320px !important; transform: none !important; }
+.terminal-window { height: 320px; }
+.uth-section-spacer { display: none; }
+
+/* === Footer mobile — compact === */
+.rf-inner { padding: 32px 24px 24px !important; }
+.rf-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+.rf-brand { display: none; }
+.rf-newsletter { display: none; }
+.rf-col-heading { font-size: 11px; margin-bottom: 8px; }
+.rf-links { gap: 4px; }
+.rf-link { font-size: 12px; }
+.rf-bottom-inner { padding: 12px 24px !important; font-size: 10px; }

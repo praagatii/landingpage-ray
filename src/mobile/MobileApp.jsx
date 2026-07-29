@@ -14,7 +14,6 @@ import {
   SiGooglehome, SiInstagram
 } from 'react-icons/si';
 import { FaSlack, FaAmazon } from 'react-icons/fa';
-import './MobileApp.css';
 
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 
@@ -162,3 +161,5 @@ export default function MobileApp() {
     </>
   );
 }
+
+import './MobileApp.css';
