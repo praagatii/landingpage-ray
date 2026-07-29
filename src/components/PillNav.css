@@ -8,10 +8,8 @@
 
 @media (max-width: 768px) {
   .pill-nav-container {
-    width: auto;
-    left: auto;
-    right: 8px;
-    top: 6px;
+    width: 100%;
+    left: 0;
     transform: none;
   }
 }
@@ -34,8 +32,9 @@
 
 @media (max-width: 768px) {
   .pill-nav {
-    width: auto;
-    padding: 0;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 1rem;
     background: transparent;
   }
 }

@@ -28,21 +28,10 @@ export default function UnderTheHood() {
 
   useEffect(() => {
     const video = videoElRef.current;
-    if (!video || !visible) return;
-    if (video.readyState >= 2) {
-      video.currentTime = 0;
-    }
-  }, [visible]);
-
-  useEffect(() => {
-    const video = videoElRef.current;
     const card = videoCardRef.current;
     const canvas = canvasRef.current;
     const section = sectionRef.current;
     if (!video || !card || !canvas || !section) return;
-
-    const vw = window.innerWidth;
-    const isMobile = vw < 768;
 
     let docTop = 0;
     let total = 0;
@@ -74,12 +63,6 @@ export default function UnderTheHood() {
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     };
 
-    const drawFallback = () => {
-      if (!ctxReady) fitCanvas();
-      ctx.fillStyle = '#0a0a0a';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    };
-
     const onResize = () => {
       sync();
       ctxReady = false;
@@ -90,60 +73,44 @@ export default function UnderTheHood() {
     };
     window.addEventListener('resize', onResize);
 
+    const seekDraw = (t) => {
+      video.removeEventListener('seeked', draw);
+      video.currentTime = t;
+      video.addEventListener('seeked', draw, { once: true });
+    };
+
     let lastSeeked = -1;
     const frameDur = 1 / 60;
 
     const loop = () => {
-      if (video.readyState >= 2 && video.duration) {
-        fitCanvas();
-        const scrollP = clamp((window.scrollY - docTop) / Math.max(total, 1), 0, 1);
-        const vh = window.innerHeight;
+      const scrollP = clamp((window.scrollY - docTop) / Math.max(total, 1), 0, 1);
+      const vh = window.innerHeight;
+      const holdEnd = 0.2;
+      const pullEnd = 0.4;
 
-        if (isMobile) {
+      if (video.readyState >= 2 && video.duration) {
+        if (scrollP < holdEnd) {
+          card.style.transform = `translateY(${vh}px)`;
+          if (video.currentTime !== 0) { video.currentTime = 0; draw(); }
+          lastSeeked = -1;
+        } else if (scrollP < pullEnd) {
+          const p = clamp((scrollP - holdEnd) / (pullEnd - holdEnd), 0, 1);
+          card.style.transform = `translateY(${(1 - p) * vh}px)`;
+          if (video.currentTime !== 0) { video.currentTime = 0; draw(); }
+          lastSeeked = -1;
+        } else {
           card.style.transform = 'translateY(0)';
-          const playP = clamp(scrollP, 0, 1);
+          const playP = clamp((scrollP - pullEnd) / (1 - pullEnd), 0, 1);
           const target = Math.round(playP * video.duration / frameDur) * frameDur;
           if (Math.abs(target - lastSeeked) > frameDur * 0.1) {
-            video.currentTime = target;
+            seekDraw(target);
             lastSeeked = target;
           }
-        } else {
-          const holdEnd = 0.2;
-          const pullEnd = 0.4;
-          if (scrollP < holdEnd) {
-            card.style.transform = `translateY(${vh}px)`;
-            if (video.currentTime !== 0) { video.currentTime = 0; }
-            lastSeeked = -1;
-          } else if (scrollP < pullEnd) {
-            const p = clamp((scrollP - holdEnd) / (pullEnd - holdEnd), 0, 1);
-            card.style.transform = `translateY(${(1 - p) * vh}px)`;
-            if (video.currentTime !== 0) { video.currentTime = 0; }
-            lastSeeked = -1;
-          } else {
-            card.style.transform = 'translateY(0)';
-            const playP = clamp((scrollP - pullEnd) / (1 - pullEnd), 0, 1);
-            const target = Math.round(playP * video.duration / frameDur) * frameDur;
-            if (Math.abs(target - lastSeeked) > frameDur * 0.1) {
-              video.currentTime = target;
-              lastSeeked = target;
-            }
-          }
         }
-        draw();
-      } else {
-        drawFallback();
       }
 
       rafRef.current = requestAnimationFrame(loop);
     };
-
-    video.addEventListener('loadeddata', () => {
-      fitCanvas();
-      if (video.readyState >= 2) {
-        video.currentTime = 0;
-        video.addEventListener('seeked', draw, { once: true });
-      }
-    }, { once: true });
 
     rafRef.current = requestAnimationFrame(loop);
     return () => {

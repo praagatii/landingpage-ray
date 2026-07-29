@@ -144,15 +144,3 @@
   color: rgba(255, 255, 255, 0.25);
   flex-shrink: 0;
 }
-
-@media (max-width: 768px) {
-  .cta-banner { padding: 40px 24px; border-radius: 24px; }
-  .cta-banner__inner { grid-template-columns: 1fr; gap: 24px; }
-  .cta-banner__headline { font-size: 24px; }
-  .cta-banner__description { font-size: 14px; }
-  .cta-banner__button { width: 100%; justify-content: center; padding: 14px 24px; font-size: 14px; }
-  .cta-banner__right { align-items: center; text-align: center; }
-  .cta-banner__eyebrow { display: none; }
-  .cta-banner__left { text-align: center; align-items: center; gap: 12px; }
-  .cta-banner__trust { gap: 12px; flex-wrap: wrap; justify-content: center; }
-}
