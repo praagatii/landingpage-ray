@@ -1,0 +1,7 @@
+{
+  "buildCommand": "node build-all.mjs",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/mobile", "destination": "/mobile.html" }
+  ]
+}
