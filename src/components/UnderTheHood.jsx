@@ -90,12 +90,6 @@ export default function UnderTheHood() {
     };
     window.addEventListener('resize', onResize);
 
-    const seekDraw = (t) => {
-      video.removeEventListener('seeked', draw);
-      video.currentTime = t;
-      video.addEventListener('seeked', draw, { once: true });
-    };
-
     let lastSeeked = -1;
     const frameDur = 1 / 60;
 
@@ -110,7 +104,7 @@ export default function UnderTheHood() {
           const playP = clamp(scrollP, 0, 1);
           const target = Math.round(playP * video.duration / frameDur) * frameDur;
           if (Math.abs(target - lastSeeked) > frameDur * 0.1) {
-            seekDraw(target);
+            video.currentTime = target;
             lastSeeked = target;
           }
         } else {
@@ -118,23 +112,24 @@ export default function UnderTheHood() {
           const pullEnd = 0.4;
           if (scrollP < holdEnd) {
             card.style.transform = `translateY(${vh}px)`;
-            if (video.currentTime !== 0) { video.currentTime = 0; draw(); }
+            if (video.currentTime !== 0) { video.currentTime = 0; }
             lastSeeked = -1;
           } else if (scrollP < pullEnd) {
             const p = clamp((scrollP - holdEnd) / (pullEnd - holdEnd), 0, 1);
             card.style.transform = `translateY(${(1 - p) * vh}px)`;
-            if (video.currentTime !== 0) { video.currentTime = 0; draw(); }
+            if (video.currentTime !== 0) { video.currentTime = 0; }
             lastSeeked = -1;
           } else {
             card.style.transform = 'translateY(0)';
             const playP = clamp((scrollP - pullEnd) / (1 - pullEnd), 0, 1);
             const target = Math.round(playP * video.duration / frameDur) * frameDur;
             if (Math.abs(target - lastSeeked) > frameDur * 0.1) {
-              seekDraw(target);
+              video.currentTime = target;
               lastSeeked = target;
             }
           }
         }
+        draw();
       } else {
         drawFallback();
       }
