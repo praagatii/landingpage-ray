@@ -92,17 +92,19 @@ function App() {
     const scrollY = window.scrollY;
     const p = clamp(scrollY / max, 0, 1);
 
-    const phoneP = clamp(scrollY / (1 * vh), 0, 1);
+    if (vw >= 768) {
+      const phoneP = clamp(scrollY / (1 * vh), 0, 1);
 
-    const kf1x = vw - pw - vw * 0.03;
-    const kf1y = vh * 0.11;
-    const kf2x = s * 0.1;
-    const kf2y = -vh * 0.04;
+      const kf1x = vw - pw - vw * 0.03;
+      const kf1y = vh * 0.11;
+      const kf2x = s * 0.1;
+      const kf2y = -vh * 0.04;
 
-    const dx = kf1x + (kf2x - kf1x) * phoneP;
-    const dy = (kf1y - vh) + (kf2y - (kf1y - vh)) * phoneP;
+      const dx = kf1x + (kf2x - kf1x) * phoneP;
+      const dy = (kf1y - vh) + (kf2y - (kf1y - vh)) * phoneP;
 
-    wrap.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${1 - phoneP * 0.18})`;
+      wrap.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${1 - phoneP * 0.18})`;
+    }
 
     const heroT = smoothstep(clamp(scrollY / (0.7 * vh), 0, 1));
 
