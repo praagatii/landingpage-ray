@@ -93,19 +93,17 @@ function DesktopApp() {
     const scrollY = window.scrollY;
     const p = clamp(scrollY / max, 0, 1);
 
-    if (vw >= 768) {
-      const phoneP = clamp(scrollY / (1 * vh), 0, 1);
+    const phoneP = clamp(scrollY / (1 * vh), 0, 1);
 
-      const kf1x = vw - pw - vw * 0.03;
-      const kf1y = vh * 0.11;
-      const kf2x = s * 0.1;
-      const kf2y = -vh * 0.04;
+    const kf1x = vw - pw - vw * 0.03;
+    const kf1y = vh * 0.11;
+    const kf2x = s * 0.1;
+    const kf2y = -vh * 0.04;
 
-      const dx = kf1x + (kf2x - kf1x) * phoneP;
-      const dy = (kf1y - vh) + (kf2y - (kf1y - vh)) * phoneP;
+    const dx = kf1x + (kf2x - kf1x) * phoneP;
+    const dy = (kf1y - vh) + (kf2y - (kf1y - vh)) * phoneP;
 
-      wrap.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${1 - phoneP * 0.18})`;
-    }
+    wrap.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${1 - phoneP * 0.18})`;
 
     const heroT = smoothstep(clamp(scrollY / (0.7 * vh), 0, 1));
 
@@ -132,12 +130,7 @@ function DesktopApp() {
     updateLayout();
     update();
 
-    const isMobile = window.innerWidth < 768
-    const lenis = new Lenis({
-      lerp: isMobile ? 0.15 : 0.08,
-      wheelMultiplier: isMobile ? 0.8 : 1,
-      smoothWheel: !isMobile
-    })
+    const lenis = new Lenis({ lerp: 0.08, wheelMultiplier: 1 })
     lenis.on('scroll', handleScroll)
 
     function raf(time) {
@@ -182,20 +175,20 @@ function DesktopApp() {
       />
 
       <div className="section-1" id="home">
-        <div className="hero-tagline">never lose<br />a <span className="hero-thought">thought</span></div>
         <AnimatedHeadline />
         <div className="hero-btns">
           <a href="#s3" className="hero-btn">Learn More</a>
           <button className="hero-btn">Contact Us</button>
         </div>
+        <div className="hero-tagline">never lose<br />a <span className="hero-thought">thought</span></div>
+      </div>
+
+      <div className="section-2" id="s2">
         <div id="phoneWrap" ref={wrapRef}>
           <div className="phone-glow" />
           <img src="/assets/ph8.png" alt="" id="phone" ref={phoneRef} />
           <img src="/assets/ph6.png" alt="" id="ph1" ref={ph1Ref} />
         </div>
-      </div>
-
-      <div className="section-2" id="s2">
         <div className="s2-content">
           <div className="s2-glow" />
           <div className="s2-headline">a second<br />brain</div>
