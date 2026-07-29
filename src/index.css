@@ -195,52 +195,68 @@ body.s2-active .phone-glow {
 .revealed.reveal-scale { opacity: 1; transform: scale(1); }
 
 @media (max-width: 768px) {
-  .hero-tagline { font-size: clamp(48px, 10vw, 100px); left: 6%; top: calc(var(--vh, 1vh) * 12); }
-  .hero-headline { font-size: clamp(16px, 3.5vw, 24px); left: 6%; top: calc(var(--vh, 1vh) * 50); white-space: normal; }
-  .hero-btns { left: 6%; top: calc(var(--vh, 1vh) * 54 + 5rem); }
+  .hero-tagline { font-size: 48px; top: calc(var(--vh, 1vh) * 8); }
+  .hero-headline { font-size: 16px; top: calc(var(--vh, 1vh) * 24); white-space: normal; }
+  .hero-btns { top: calc(var(--vh, 1vh) * 28 + 3.5rem); }
   .hero-btn { font-size: 10px; padding: 0.4rem 1.2rem; }
 
-  .s2-headline { font-size: clamp(48px, 10vw, 100px); left: 6%; top: calc(var(--vh, 1vh) * 12); }
-  .s2-subtext { font-size: clamp(14px, 3vw, 22px); top: calc(var(--vh, 1vh) * 50); left: 6%; right: 6%; }
+  .s2-headline { font-size: 48px; }
+  .s2-subtext { font-size: 16px; left: 6%; right: 6%; }
 
-  #phone { max-height: calc(var(--vh, 1vh) * 65); }
+  #phone { max-height: calc(var(--vh, 1vh) * 50); }
   .phone-glow { inset: -30px; }
 
-  .s3-heading { font-size: clamp(48px, 10vw, 100px); }
+  .s3-heading { font-size: 48px; }
   .s3-top-row { flex-direction: column; gap: 24px; }
   .s3-marquee--top { margin-top: 0; }
   .s3-marquee--bottom { margin-left: 0; width: 100%; }
   .s3-inner { padding-top: calc(var(--vh, 1vh) * 2); }
 
-  .uth-heading { font-size: clamp(48px, 10vw, 100px); }
+  .uth-heading { font-size: 48px; }
   .uth-container { grid-template-columns: 1fr; gap: 20px; }
   .uth-right { margin-left: 0; }
   .uth-right-inner { padding-top: 40px; }
   .uth-video-card { height: 280px; top: 40px; }
   .terminal-window { height: 280px; }
-  .uth-content { padding: 20px 6.7% 0; }
 
   .cta-banner { padding: 40px 24px; border-radius: 20px; }
   .cta-banner__inner { grid-template-columns: 1fr; gap: 24px; }
   .cta-banner__headline { font-size: 20px; }
-  .cta-banner__description { font-size: 13px; }
   .cta-banner__button { font-size: 14px; padding: 12px 24px; }
 }
 
 @media (max-width: 480px) {
-  .hero-tagline { font-size: clamp(32px, 8vw, 48px); left: 5%; top: calc(var(--vh, 1vh) * 10); }
-  .hero-headline { font-size: clamp(14px, 3.5vw, 18px); left: 5%; top: calc(var(--vh, 1vh) * 48); }
-  .hero-btns { left: 5%; top: calc(var(--vh, 1vh) * 52 + 4rem); gap: 0.8rem; }
-  .hero-btn { font-size: 9px; padding: 0.3rem 1rem; }
+  .hero-tagline { font-size: 32px; left: 5%; top: calc(var(--vh, 1vh) * 8); }
+  .hero-headline { font-size: 13px; left: 5%; top: calc(var(--vh, 1vh) * 22); white-space: normal; }
+  .hero-btns { left: 5%; top: calc(var(--vh, 1vh) * 26 + 3rem); gap: 0.5rem; }
+  .hero-btn { font-size: 8px; padding: 5px 12px; }
 
-  .s2-headline { font-size: clamp(32px, 8vw, 48px); left: 5%; }
-  .s2-subtext { font-size: clamp(13px, 3vw, 16px); left: 5%; right: 5%; }
+  #phone { max-height: calc(var(--vh, 1vh) * 45); }
+  .phone-glow { inset: -15px; }
 
-  #phone { max-height: calc(var(--vh, 1vh) * 50); }
+  .s2-headline { font-size: 32px; left: 5%; top: calc(var(--vh, 1vh) * 8); }
+  .s2-subtext { font-size: 13px; left: 5%; right: 5%; top: calc(var(--vh, 1vh) * 35); }
+  .s2-glow { display: none; }
 
-  .s3-heading { font-size: clamp(32px, 8vw, 48px); }
+  .s3-heading { font-size: 32px; white-space: normal; }
+  .s3-top-row { flex-direction: column; gap: 12px; }
+  .s3-marquee--top { margin-top: 0; }
+  .s3-marquee--bottom { margin-left: 0; width: 100%; }
+  .s3-inner { padding-left: 5%; padding-right: 5%; padding-top: calc(var(--vh, 1vh) * 2); }
 
-  .uth-heading { font-size: clamp(32px, 8vw, 48px); }
-  .uth-video-card { height: 200px; }
-  .terminal-window { height: 200px; }
+  .cta-banner { padding: 24px 16px; border-radius: 14px; }
+  .cta-banner__inner { grid-template-columns: 1fr; gap: 16px; }
+  .cta-banner__headline { font-size: 16px; }
+  .cta-banner__button { font-size: 12px; padding: 10px 20px; }
+
+  .uth-heading { font-size: 32px; }
+  .uth-container { grid-template-columns: 1fr; gap: 12px; }
+  .uth-right { margin-left: 0; }
+  .uth-video-card { height: 180px; top: 30px; }
+  .terminal-window { height: 180px; }
+  .uth-content { padding: 16px 5% 0; }
+  .uth-label { font-size: 16px; }
+
+  .rf-inner { padding: 32px 5% 24px; }
+  .rf-grid { grid-template-columns: 1fr; gap: 20px; }
 }
