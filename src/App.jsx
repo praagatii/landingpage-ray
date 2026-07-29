@@ -187,14 +187,14 @@ function App() {
           <a href="#s3" className="hero-btn">Learn More</a>
           <button className="hero-btn">Contact Us</button>
         </div>
-      </div>
-
-      <div className="section-2" id="s2">
         <div id="phoneWrap" ref={wrapRef}>
           <div className="phone-glow" />
           <img src="/assets/ph8.png" alt="" id="phone" ref={phoneRef} />
           <img src="/assets/ph6.png" alt="" id="ph1" ref={ph1Ref} />
         </div>
+      </div>
+
+      <div className="section-2" id="s2">
         <div className="s2-content">
           <div className="s2-glow" />
           <div className="s2-headline">a second<br />brain</div>

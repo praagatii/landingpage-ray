@@ -201,12 +201,13 @@ body.s2-active .phone-glow {
   .top-left-logo { height: 26px; top: 12px; left: 16px; }
 
   .section-1 {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 46px 24px 20px;
-    height: calc(var(--vh, 1vh) * 72);
+    padding: 46px 24px 0;
+    min-height: calc(var(--vh, 1vh) * 100);
+    height: auto;
     gap: 0;
   }
   .section-1 .hero-tagline {
@@ -226,13 +227,23 @@ body.s2-active .phone-glow {
   .section-1 .hero-btn {
     width: 100%; text-align: center; padding: 12px 20px; font-size: 11px;
   }
+  #phoneWrap {
+    position: relative; left: auto; top: auto;
+    flex: 1;
+    width: 100%; overflow: hidden;
+    display: flex; justify-content: center; align-items: center;
+  }
+  #phoneWrap .phone-glow { position: absolute; inset: -30px; z-index: -1; }
+  #phone, #ph1 { max-height: calc(var(--vh, 1vh) * 55); max-width: 80%; position: absolute; inset: 0; margin: auto; width: auto; height: auto; }
+  #ph1 { object-fit: contain; }
 
   .section-2 {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px 24px 40px;
+    justify-content: center;
+    padding: 60px 24px;
     height: auto;
     min-height: 0;
     background: #fff;
@@ -246,17 +257,8 @@ body.s2-active .phone-glow {
   .section-2 .s2-subtext {
     position: relative; left: auto; top: auto; right: auto;
     font-size: 16px; text-align: center; max-width: 100%;
-    color: rgba(0,0,0,0.5); opacity: 1; margin-bottom: 24px;
+    color: rgba(0,0,0,0.5); opacity: 1;
   }
-  #phoneWrap {
-    position: relative; left: auto; top: auto;
-    display: flex; justify-content: center; align-items: center;
-    will-change: auto; transform: none !important;
-    width: 100%; overflow: hidden;
-  }
-  #phoneWrap .phone-glow { position: absolute; inset: -30px; z-index: -1; }
-  #phone, #ph1 { max-height: calc(var(--vh, 1vh) * 60); max-width: 82%; position: absolute; inset: 0; margin: auto; width: auto; height: auto; }
-  #ph1 { object-fit: contain; }
   .s2-glow { display: none; }
 
   .section-3 { padding: 0 24px 40px; background: #fff; }
@@ -271,11 +273,12 @@ body.s2-active .phone-glow {
   .s3-cta-wrap { padding-bottom: 0; }
   .s3-cta-glow { display: none; }
 
-  .cta-banner { padding: 28px 20px; border-radius: 20px; }
-  .cta-banner__inner { grid-template-columns: 1fr; gap: 12px; }
-  .cta-banner__headline { font-size: 20px; }
-  .cta-banner__button { width: 100%; justify-content: center; padding: 12px 20px; font-size: 13px; }
-  .cta-banner__trust { gap: 10px; flex-wrap: wrap; }
+  .cta-banner { padding: 28px 24px; border-radius: 20px; }
+  .cta-banner__inner { grid-template-columns: 1fr; gap: 16px; }
+  .cta-banner__headline { font-size: 22px; }
+  .cta-banner__button { width: 100%; justify-content: center; padding: 14px 24px; font-size: 14px; }
+  .cta-banner__right { align-items: center; }
+  .cta-banner__trust { gap: 10px; flex-wrap: wrap; justify-content: center; }
   .cta-banner__trust-item { font-size: clamp(11px, 3vw, 13px); }
 
   .uth-section { position: relative; background: #050505; }
@@ -286,8 +289,8 @@ body.s2-active .phone-glow {
   .uth-right-inner { padding-top: 0; height: auto; }
   .uth-label { font-size: 14px; margin-left: 0; margin-bottom: 4px; }
   .uth-heading { font-size: 28px; }
-  .uth-video-card { position: relative; top: auto; left: auto; height: 280px; border-radius: 20px; width: 100%; margin-top: 16px; transform: none; }
-  .terminal-window { height: 260px; border-radius: 20px; }
+  .uth-video-card { position: relative; top: auto; left: auto; height: 300px; border-radius: 20px; width: 100%; margin-top: 16px; transform: none; }
+  .terminal-window { height: 280px; border-radius: 20px; }
   .uth-section-spacer { display: none !important; }
 
   .rf-inner { padding: 16px 24px 8px; }
