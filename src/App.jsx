@@ -182,11 +182,11 @@ function App() {
 
       <div className="section-1" id="home">
         <AnimatedHeadline />
+        <div className="hero-tagline">never lose<br />a <span className="hero-thought">thought</span></div>
         <div className="hero-btns">
           <a href="#s3" className="hero-btn">Learn More</a>
           <button className="hero-btn">Contact Us</button>
         </div>
-        <div className="hero-tagline">never lose<br />a <span className="hero-thought">thought</span></div>
       </div>
 
       <div className="section-2" id="s2">

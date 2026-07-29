@@ -212,12 +212,12 @@ body.s2-active .phone-glow {
   .section-1 .hero-tagline {
     position: relative; left: auto; top: auto;
     font-size: 42px; text-align: center; pointer-events: none;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   }
   .section-1 .hero-headline {
     position: relative; left: auto; top: auto;
     font-size: 16px; text-align: center; white-space: normal;
-    opacity: 0.55; margin-bottom: 20px;
+    opacity: 0.55; margin-bottom: 4px;
   }
   .section-1 .hero-btns {
     position: relative; left: auto; top: auto;
@@ -239,16 +239,16 @@ body.s2-active .phone-glow {
   .section-2 .s2-content { width: 100%; position: relative; z-index: 2; }
   .section-2 .s2-headline {
     position: relative; left: auto; top: auto;
-    font-size: 30px; text-align: center; color: #fff;
+    font-size: 36px; text-align: center; color: #fff;
     margin-bottom: 16px; opacity: 1;
   }
   body.s2-active .section-2 .s2-headline { color: #000; }
   .section-2 .s2-subtext {
     position: relative; left: auto; top: auto; right: auto;
     font-size: 16px; text-align: center; max-width: 100%;
-    color: rgba(255,255,255,0.85); opacity: 1; margin-bottom: 24px;
+    color: rgba(255,255,255,0.55); opacity: 1; margin-bottom: 24px;
   }
-  body.s2-active .section-2 .s2-subtext { opacity: 0.85; color: #000; }
+  body.s2-active .section-2 .s2-subtext { opacity: 0.65; color: #000; }
   #phoneWrap {
     position: relative; left: auto; top: auto;
     display: flex; justify-content: center; align-items: center;
@@ -260,16 +260,16 @@ body.s2-active .phone-glow {
   #ph1 { max-height: calc(var(--vh, 1vh) * 60); max-width: 82%; }
   .s2-glow { display: none; }
 
-  .section-3 { padding: 0 24px 64px; }
+  .section-3 { padding: 0 24px 64px; background: #fff; }
   .s3-inner { padding: 0; }
-  .s3-heading { font-size: 30px; white-space: normal; text-align: center; }
+  .s3-heading { font-size: 38px; white-space: normal; text-align: center; }
   .s3-top-row { flex-direction: column; gap: 12px; align-items: center; }
   .s3-marquee--top { margin-top: 0; width: 100%; }
-  .s3-marquee--top svg, .s3-marquee--top img { transform: scale(1.5); }
+  .s3-marquee--top svg, .s3-marquee--top img { transform: scale(1.15); }
   .s3-marquee--bottom { margin-left: 0; width: 100%; margin-top: 0; }
-  .s3-marquee--bottom svg, .s3-marquee--bottom img { transform: scale(1.5); }
-  .s3-heading-wrap { margin-top: 12px; }
-  .s3-cta-wrap { padding-bottom: 16px; }
+  .s3-marquee--bottom svg, .s3-marquee--bottom img { transform: scale(1.15); }
+  .s3-heading-wrap { margin-top: 20px; }
+  .s3-cta-wrap { padding-bottom: 24px; }
   .s3-cta-glow { display: none; }
 
   .cta-banner { padding: 24px 20px; border-radius: 20px; }
@@ -280,14 +280,14 @@ body.s2-active .phone-glow {
   .cta-banner__trust-item { font-size: clamp(11px, 3vw, 13px); }
 
   .uth-content { padding: 16px 24px 0; }
-  .uth-container { grid-template-columns: 1fr; gap: 12px; }
-  .uth-left { padding-top: 4px; }
+  .uth-container { grid-template-columns: 1fr; gap: 8px; }
+  .uth-left { padding-top: 0; }
   .uth-right { margin-left: 0; }
-  .uth-right-inner { padding-top: 12px; }
-  .uth-label { font-size: 14px; margin-left: 0; margin-bottom: 6px; }
-  .uth-heading { font-size: 30px; }
-  .uth-video-card { height: 280px; top: 12px; border-radius: 20px; width: 85%; left: 50%; transform: translateX(-50%); }
-  .terminal-window { height: 220px; border-radius: 20px; }
+  .uth-right-inner { padding-top: 8px; height: auto; }
+  .uth-label { font-size: 12px; margin-left: 0; margin-bottom: 4px; }
+  .uth-heading { font-size: 24px; }
+  .uth-video-card { position: relative; top: auto; left: auto; height: 220px; border-radius: 20px; width: 100%; margin-top: 12px; transform: none; }
+  .terminal-window { height: 240px; border-radius: 20px; }
 
   .rf-inner { padding: 16px 24px 8px; }
   .rf-grid { grid-template-columns: 1fr 1fr; gap: 12px; text-align: center; }
