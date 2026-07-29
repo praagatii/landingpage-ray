@@ -135,14 +135,14 @@
   pointer-events: none;
 }
 @media (max-width: 768px) {
-  .uth-content { position: sticky; top: 0; height: 100vh; padding: 16px 24px; display: flex; flex-direction: column; }
-  .uth-container { flex: 1; display: flex; flex-direction: column; gap: 0; height: 100%; width: 100%; }
-  .uth-left { width: 100%; padding-top: 0; flex-shrink: 0; }
-  .uth-right { width: 100%; margin-left: 0; overflow: hidden; flex: 1; height: 100%; }
-  .uth-right-inner { padding-top: 0; height: 100%; position: relative; }
+  .uth-content { position: relative; top: auto; height: auto; padding: 32px 24px; background: #050505; }
+  .uth-container { display: flex; flex-direction: column; gap: 20px; height: auto; }
+  .uth-left { width: 100%; padding-top: 0; }
+  .uth-right { width: 100%; margin-left: 0; overflow: visible; height: auto; }
+  .uth-right-inner { padding-top: 0; height: auto; }
   .uth-label { font-size: 16px; margin-left: 0; margin-bottom: 6px; letter-spacing: 0.15em; white-space: nowrap; }
   .uth-heading { font-size: 32px; }
-  .uth-video-card { position: absolute; top: 0; left: 0; height: 100%; width: 100%; border-radius: 24px; }
-  .terminal-window { height: 100%; border-radius: 24px; }
-  .uth-section-spacer { height: 100vh; display: block; }
+  .uth-video-card { position: relative; top: auto; left: auto; height: 320px; width: 100%; margin-top: 20px; border-radius: 24px; }
+  .terminal-window { height: 300px; border-radius: 24px; }
+  .uth-section-spacer { display: none; }
 }
