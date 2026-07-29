@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react';
 import TerminalAnimation from '../components/TerminalAnimation';
-import './MobileUnderTheHood.css';
+import './UnderTheHood.css';
 
-export default function MobileUnderTheHood() {
+export default function UnderTheHood() {
   const videoRef = useRef(null);
 
   useEffect(() => {

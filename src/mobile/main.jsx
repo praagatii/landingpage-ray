@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import MobileApp from './mobile/MobileApp.jsx'
+import '../index.css'
+import App from './App.jsx'
 
 const loader = document.getElementById('loader')
 const fontsLoaded = document.fonts.ready
@@ -15,6 +15,6 @@ Promise.all([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <MobileApp />
+    <App />
   </StrictMode>,
 )
