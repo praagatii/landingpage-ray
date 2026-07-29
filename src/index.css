@@ -273,27 +273,6 @@ body.s2-active .phone-glow {
   .s3-cta-wrap { padding-bottom: 0; }
   .s3-cta-glow { display: none; }
 
-  .cta-banner { padding: 40px 24px; border-radius: 24px; }
-  .cta-banner__inner { grid-template-columns: 1fr; gap: 24px; }
-  .cta-banner__headline { font-size: 24px; }
-  .cta-banner__description { font-size: 14px; }
-  .cta-banner__button { width: 100%; justify-content: center; padding: 14px 24px; font-size: 14px; }
-  .cta-banner__right { align-items: center; text-align: center; }
-  .cta-banner__eyebrow { text-align: center; width: 100%; }
-  .cta-banner__left { text-align: center; align-items: center; }
-  .cta-banner__trust { gap: 12px; flex-wrap: wrap; justify-content: center; }
-  .cta-banner__trust-item { font-size: clamp(11px, 3vw, 13px); }
-
-  .uth-section { position: relative; background: #050505; }
-  .uth-content { position: relative; top: auto; height: auto; padding: 32px 24px; }
-  .uth-container { display: flex; flex-direction: column; gap: 20px; height: auto; }
-  .uth-left { padding-top: 0; width: 100%; }
-  .uth-right { margin-left: 0; overflow: visible; height: auto; width: 100%; }
-  .uth-right-inner { padding-top: 0; height: auto; }
-  .uth-label { font-size: 16px; margin-left: 0; margin-bottom: 6px; letter-spacing: 0.15em; }
-  .uth-heading { font-size: 32px; }
-  .uth-video-card { position: relative; top: auto; left: auto; height: 320px; border-radius: 24px; width: 100%; margin-top: 20px; transform: none; }
-  .terminal-window { height: 300px; border-radius: 24px; }
   .uth-section-spacer { display: none !important; }
 
   .rf-inner { padding: 16px 24px 8px; }
