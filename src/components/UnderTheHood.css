@@ -135,5 +135,5 @@
   pointer-events: none;
 }
 @media (max-width: 768px) {
-  .uth-section-spacer { height: 150vh; }
+  .uth-section-spacer { display: none; }
 }
