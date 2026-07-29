@@ -5,8 +5,8 @@ import PillNav from '../components/PillNav';
 import { BottomBlur } from '../components/EdgeBlur';
 import InfiniteMarquee from '../components/InfiniteMarquee';
 import CtaBanner from '../components/CtaBanner';
-import UnderTheHood from '../components/UnderTheHood';
 import Footer from '../components/Footer';
+import MobileUnderTheHood from './MobileUnderTheHood';
 import {
   SiWhatsapp, SiGmail, SiGooglecalendar, SiNotion, SiDiscord, SiSpotify,
   SiYoutube, SiGooglemaps, SiUber, SiSwiggy, SiZomato, SiGoogledrive,
@@ -155,7 +155,7 @@ export default function MobileApp() {
           </div>
         </div>
       </div>
-      <UnderTheHood />
+      <MobileUnderTheHood />
       <Footer />
       <BottomBlur height={60} />
     </>

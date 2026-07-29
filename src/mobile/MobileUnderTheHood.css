@@ -1,0 +1,58 @@
+.muth-section {
+  position: relative;
+  width: 100%;
+  background: #050505;
+  overflow: hidden;
+}
+
+.muth-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px 60px;
+  gap: 24px;
+}
+
+.muth-header {
+  text-align: center;
+}
+
+.muth-label {
+  font-family: 'MuseoModerno', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.55);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.muth-heading {
+  font-family: 'MuseoModerno', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 0.7;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.muth-video-card {
+  width: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #090909;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 40px rgba(255, 92, 138, 0.06),
+    0 0 80px rgba(45, 140, 255, 0.04),
+    0 0 120px rgba(45, 140, 255, 0.03);
+  aspect-ratio: 16 / 9;
+}
+
+.muth-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
